@@ -1,9 +1,9 @@
 # markdown-utils [![NPM version](https://badge.fury.io/js/markdown-utils.svg)](http://badge.fury.io/js/markdown-utils)
 
-> Create snippets of markdown from data.
+> Create markdown snippets.
 
 ## Install
-#### Install with [npm](npmjs.org):
+### Install with [npm](npmjs.org):
 
 ```bash
 npm i markdown-utils --save-dev
@@ -22,24 +22,239 @@ var mdu = require('markdown-utils');
 ```
 
 ## API
+## [.badge](lib/badge.js#L21)
 
+Create a markdown-formatted badge.
+
+* `alt` **{String}**    
+* `img_url` **{String}**    
+* `url` **{String}**    
+
+```js
+utils.badge(alt, img_url, url);
+//=> [![Build Status](https://travis-ci.org/jonschlinkert/template.svg)](https://travis-ci.org/jonschlinkert/template)
+```
+## [.blockquote](lib/blockquote.js#L16)
+
+Create a markdown-formatted blockquote.
+
+* `str` **{String}**    
+
+```js
+utils.blockquote('This is a blockquote');
+//=> '> This is a blockquote'
+```
+## [.code](lib/code.js#L16)
+
+Create a markdown-formatted `<code></code>` snippet.
+
+* `str` **{String}**    
+
+```js
+utils.code('var foo = bar;');
+//=> '`var foo = bar;`'
+```
+## [.del](lib/del.js#L16)
+
+Create markdown-formatted `<del></del>`.
+
+* `str` **{String}**    
+
+```js
+utils.del('text');
+//=> '~~text~~'
+```
+## [.em](lib/em.js#L16)
+
+Create a markdown-formatted em.
+
+* `str` **{String}**    
+
+```js
+utils.em('This is emphasized');
+//=> '_This is emphasized_'
+```
+## [.h1](lib/h1.js#L16)
+
+Create a markdown-formatted h1 heading.
+
+* `str` **{String}**    
+
+```js
+utils.h1('This is a heading');
+//=> '# This is a heading'
+```
+## [.h2](lib/h2.js#L16)
+
+Create a markdown-formatted h2 heading.
+
+* `str` **{String}**    
+
+```js
+utils.h2('This is a heading');
+//=> '## This is a heading'
+```
+## [.h3](lib/h3.js#L16)
+
+Create a markdown-formatted h3 heading.
+
+* `str` **{String}**    
+
+```js
+utils.h3('This is a heading');
+//=> '### This is a heading'
+```
+## [.h4](lib/h4.js#L16)
+
+Create a markdown-formatted h4 heading.
+
+* `str` **{String}**    
+
+```js
+utils.h4('This is a heading');
+//=> '#### This is a heading'
+```
+## [.h5](lib/h5.js#L16)
+
+Create a markdown-formatted h5 heading.
+
+* `str` **{String}**    
+
+```js
+utils.h5('This is a heading');
+//=> '##### This is a heading'
+```
+## [.h6](lib/h6.js#L16)
+
+Create a markdown-formatted h6 heading.
+
+* `str` **{String}**    
+
+```js
+utils.h6('This is a heading');
+//=> '###### This is a heading'
+```
+## [heading](lib/heading.js#L17)
+
+Create a markdown-formatted heading.
+
+* `str` **{String}**    
+* `level` **{Number}**    
+
+```js
+utils.heading('This is a heading', 1);
+//=> '# This is a heading'
+```
+## [.hr](lib/hr.js#L16)
+
+Create a markdown-formatted horizontal rule.
+
+* `str` **{String}**: Alternate string to use. Default is `***` to avoid collision with `---` which is used for front matter.    
+
+```js
+utils.hr();
+//=> '***'
+```
+## [.image](lib/image.js#L21)
+
+Create a markdown-formatted image from the given values.
+
+* `title` **{String}**    
+* `src` **{String}**    
+* `alt` **{String}**    
+
+```js
+utils.image(title, src);
+//=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg)
+
+utils.image(title, src, alt);
+//=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg) "This is alt text!"
+```
+
+## [.link](lib/link.js#L17)
+
+Create a markdown-formatted link from the given values.
+
+* `title` **{String}**    
+* `href` **{String}**    
+
+```js
+utils.link(title, href);
+//=> [fs-utils](https://github.com/assemble/fs-utils)
+```
+
+## [.listitem](lib/listitem.js#L26)
+
+Create a markdown-formatted heading.
+
+* `str` **{String}**    
+* `bullet` **{String}**    
+* `level` **{Number}**    
+
+```js
+utils.item('Level 0 list item', 0);
+//=> '* Level 0 list item'
+
+utils.item('Level 1 list item', 1);
+//=> '  * Level 1 list item'
+
+utils.item('Level 2 list item', 2);
+//=> '    * Level 2 list item'
+```
+## [.pre](lib/pre.js#L23)
+
+Create a markdown-formatted `<pre></pre>` snippet.
+
+* `str` **{String}**    
+* `language` **{String}**    
+
+```js
+utils.pre('var foo = bar;');
+```
+Results in:
+
+<pre>
+```js
+var foo = bar;
+```
+</pre>
+## [.reference](lib/reference.js#L18)
+
+Create a markdown-formatted reference link from the given values.
+
+* `id` **{String}**    
+* `url` **{String}**    
+* `alt` **{String}**    
+
+```js
+utils.reference(alt, url);
+//=> [template]: https://github/jonschlinkert/template "Make stuff!"
+```
+## [.strong](lib/strong.js#L16)
+
+Create markdown-formatted bold text.
+
+* `str` **{String}**    
+
+```js
+utils.strong('This is bold');
+//=> '**This is bold**'
+```
 
 ## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue][issues].
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/markdown-utils/issues)
 
 ## Author
 
 **Jon Schlinkert**
-
+ 
 + [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
 
 ## License
-Copyright (c) 2014 Jon Schlinkert, contributors.
+Copyright (c) 2014 Jon Schlinkert  
 Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on November 06, 2014._
-
-[issues]: https://github.com/jonschlinkert/markdown-utils/issues
+_This file was generated by [verb](https://github.com/jonschlinkert/verb) on November 11, 2014._
