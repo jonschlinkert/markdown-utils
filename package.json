@@ -1,7 +1,7 @@
 {
   "name": "markdown-utils",
   "description": "Create markdown snippets.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/jonschlinkert/markdown-utils",
   "author": {
     "name": "Jon Schlinkert",
