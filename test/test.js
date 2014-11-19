@@ -9,9 +9,10 @@
 
 var fs = require('fs');
 var path = require('path')
-var mdu = require('../index');
 var forOwn = require('for-own');
 var filter = require('filter-object');
+var should = require('should');
+var mdu = require('../index');
 
 function readFixture(src) {
   var args = require(path.join(__dirname, 'fixtures', src + '.js'));
@@ -27,7 +28,7 @@ describe('markdown-utils', function() {
   //ignore .list, because it's WIP
   mdu = filter(mdu, ['*', '!list']);
   forOwn(mdu, function(fn, name) {
-    it('should `.' + name + '` works', function(done) {
+    it('should render: `' + name + '`', function(done) {
       var fixture = readFixture(name);
       var actual = fn.apply(fn, fixture);
       var expected = readExpected(name);

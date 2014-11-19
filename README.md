@@ -3,14 +3,13 @@
 > Create markdown snippets.
 
 ## Install
-### Install with [npm](npmjs.org):
+### Install with [npm](npmjs.org)
 
 ```bash
-npm i markdown-utils --save-dev
+npm i markdown-utils --save
 ```
 
 ## Run tests
-> [19 tests](./test) so far, more tests are welcome! But for now these handles everything. :)
 
 ```bash
 npm test
