@@ -14,23 +14,23 @@ var forOwn = require('for-own');
 var filter = require('filter-object');
 
 function readFixture(src) {
-  var args = require(path.join(__dirname, 'fixtures', src));
+  var args = require(path.join(__dirname, 'fixtures', src + '.js'));
   return args;
 }
 
 function readExpected(src) {
-  var str = fs.readFileSync(path.join(__dirname, 'expected', src), 'utf-8');
+  var str = fs.readFileSync(path.join(__dirname, 'expected', src + '.md'), 'utf-8');
   return str;
 }
 
-
 describe('markdown-utils', function() {
+  //ignore .list, because it's WIP
   mdu = filter(mdu, ['*', '!list']);
   forOwn(mdu, function(fn, name) {
     it('should `.' + name + '` works', function(done) {
-      var fixture = readFixture(name + '.js');
+      var fixture = readFixture(name);
       var actual = fn.apply(fn, fixture);
-      var expected = readExpected(name + '.md');
+      var expected = readExpected(name);
       actual.should.equal(expected);
       done();
     });
