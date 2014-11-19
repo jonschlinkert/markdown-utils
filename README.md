@@ -10,6 +10,7 @@ npm i markdown-utils --save-dev
 ```
 
 ## Run tests
+> [19 tests](./test) so far, more tests are welcome! But for now these handles everything. :)
 
 ```bash
 npm test
@@ -22,7 +23,7 @@ var mdu = require('markdown-utils');
 ```
 
 ## API
-## [.badge](lib/badge.js#L21)
+### [.badge](lib/badge.js#L21)
 
 Create a markdown-formatted badge.
 
@@ -34,7 +35,8 @@ Create a markdown-formatted badge.
 utils.badge(alt, img_url, url);
 //=> [![Build Status](https://travis-ci.org/jonschlinkert/template.svg)](https://travis-ci.org/jonschlinkert/template)
 ```
-## [.blockquote](lib/blockquote.js#L16)
+
+### [.blockquote](lib/blockquote.js#L16)
 
 Create a markdown-formatted blockquote.
 
@@ -44,7 +46,8 @@ Create a markdown-formatted blockquote.
 utils.blockquote('This is a blockquote');
 //=> '> This is a blockquote'
 ```
-## [.code](lib/code.js#L16)
+
+### [.code](lib/code.js#L16)
 
 Create a markdown-formatted `<code></code>` snippet.
 
@@ -54,7 +57,8 @@ Create a markdown-formatted `<code></code>` snippet.
 utils.code('var foo = bar;');
 //=> '`var foo = bar;`'
 ```
-## [.del](lib/del.js#L16)
+
+### [.del](lib/del.js#L16)
 
 Create markdown-formatted `<del></del>`.
 
@@ -64,7 +68,8 @@ Create markdown-formatted `<del></del>`.
 utils.del('text');
 //=> '~~text~~'
 ```
-## [.em](lib/em.js#L16)
+
+### [.em](lib/em.js#L16)
 
 Create a markdown-formatted em.
 
@@ -74,7 +79,8 @@ Create a markdown-formatted em.
 utils.em('This is emphasized');
 //=> '_This is emphasized_'
 ```
-## [.h1](lib/h1.js#L16)
+
+### [.h1](lib/h1.js#L16)
 
 Create a markdown-formatted h1 heading.
 
@@ -84,7 +90,8 @@ Create a markdown-formatted h1 heading.
 utils.h1('This is a heading');
 //=> '# This is a heading'
 ```
-## [.h2](lib/h2.js#L16)
+
+### [.h2](lib/h2.js#L16)
 
 Create a markdown-formatted h2 heading.
 
@@ -94,7 +101,8 @@ Create a markdown-formatted h2 heading.
 utils.h2('This is a heading');
 //=> '## This is a heading'
 ```
-## [.h3](lib/h3.js#L16)
+
+### [.h3](lib/h3.js#L16)
 
 Create a markdown-formatted h3 heading.
 
@@ -104,7 +112,8 @@ Create a markdown-formatted h3 heading.
 utils.h3('This is a heading');
 //=> '### This is a heading'
 ```
-## [.h4](lib/h4.js#L16)
+
+### [.h4](lib/h4.js#L16)
 
 Create a markdown-formatted h4 heading.
 
@@ -114,7 +123,8 @@ Create a markdown-formatted h4 heading.
 utils.h4('This is a heading');
 //=> '#### This is a heading'
 ```
-## [.h5](lib/h5.js#L16)
+
+### [.h5](lib/h5.js#L16)
 
 Create a markdown-formatted h5 heading.
 
@@ -124,7 +134,8 @@ Create a markdown-formatted h5 heading.
 utils.h5('This is a heading');
 //=> '##### This is a heading'
 ```
-## [.h6](lib/h6.js#L16)
+
+### [.h6](lib/h6.js#L16)
 
 Create a markdown-formatted h6 heading.
 
@@ -134,7 +145,8 @@ Create a markdown-formatted h6 heading.
 utils.h6('This is a heading');
 //=> '###### This is a heading'
 ```
-## [heading](lib/heading.js#L17)
+
+### [.heading](lib/heading.js#L17)
 
 Create a markdown-formatted heading.
 
@@ -145,7 +157,8 @@ Create a markdown-formatted heading.
 utils.heading('This is a heading', 1);
 //=> '# This is a heading'
 ```
-## [.hr](lib/hr.js#L16)
+
+### [.hr](lib/hr.js#L16)
 
 Create a markdown-formatted horizontal rule.
 
@@ -155,41 +168,45 @@ Create a markdown-formatted horizontal rule.
 utils.hr();
 //=> '***'
 ```
-## [.image](lib/image.js#L21)
+
+### [.image](lib/image.js#L21)
 
 Create a markdown-formatted image from the given values.
 
-* `title` **{String}**    
-* `src` **{String}**    
 * `alt` **{String}**    
+* `src` **{String}**    
+* `title` **{String}**    
 
 ```js
-utils.image(title, src);
+utils.image(alt, src);
 //=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg)
 
-utils.image(title, src, alt);
-//=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg) "This is alt text!"
+utils.image(alt, src, title);
+//=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg "This is title of image!")
 ```
 
-## [.link](lib/link.js#L17)
+
+### [.link](lib/link.js#L18)
 
 Create a markdown-formatted link from the given values.
 
-* `title` **{String}**    
+* `anchor` **{String}**    
 * `href` **{String}**    
+* `title` **{String}**    
 
 ```js
-utils.link(title, href);
-//=> [fs-utils](https://github.com/assemble/fs-utils)
+utils.link('fs-utils', 'https://github.com/assemble/fs-utils', 'hover title');
+//=> [fs-utils](https://github.com/assemble/fs-utils "hover title")
 ```
 
-## [.listitem](lib/listitem.js#L26)
 
-Create a markdown-formatted heading.
+### [.listitem](lib/listitem.js#L26)
+
+Create a markdown-formatted listitem.
 
 * `str` **{String}**    
-* `bullet` **{String}**    
 * `level` **{Number}**    
+* `bullet` **{String}**: default `*`    
 
 ```js
 utils.item('Level 0 list item', 0);
@@ -201,9 +218,10 @@ utils.item('Level 1 list item', 1);
 utils.item('Level 2 list item', 2);
 //=> '    * Level 2 list item'
 ```
-## [.pre](lib/pre.js#L23)
 
-Create a markdown-formatted `<pre></pre>` snippet.
+### [.pre](lib/pre.js#L23)
+
+Create a markdown-formatted `<pre><code></code></pre>` snippet with or without lang.
 
 * `str` **{String}**    
 * `language` **{String}**    
@@ -211,26 +229,29 @@ Create a markdown-formatted `<pre></pre>` snippet.
 ```js
 utils.pre('var foo = bar;');
 ```
+
 Results in:
 
 <pre>
 ```js
 var foo = bar;
 ```
+
 </pre>
-## [.reference](lib/reference.js#L18)
+### [.reference](lib/reference.js#L18)
 
 Create a markdown-formatted reference link from the given values.
 
 * `id` **{String}**    
 * `url` **{String}**    
-* `alt` **{String}**    
+* `title` **{String}**    
 
 ```js
-utils.reference(alt, url);
+utils.reference('template', 'https://github/jonschlinkert/template', 'Make stuff!');
 //=> [template]: https://github/jonschlinkert/template "Make stuff!"
 ```
-## [.strong](lib/strong.js#L16)
+
+### [.strong](lib/strong.js#L16)
 
 Create markdown-formatted bold text.
 
@@ -240,6 +261,7 @@ Create markdown-formatted bold text.
 utils.strong('This is bold');
 //=> '**This is bold**'
 ```
+
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/markdown-utils/issues)
@@ -257,4 +279,4 @@ Released under the MIT license
 
 ***
 
-_This file was generated by [verb](https://github.com/jonschlinkert/verb) on November 11, 2014._
+_This file was generated by [verb](https://github.com/assemble/verb) on November 19, 2014._

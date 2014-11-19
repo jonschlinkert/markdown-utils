@@ -1,0 +1,1 @@
+![Build Status](https://travis-ci.org/jonschlinkert/template.svg "This is title text of image!")
