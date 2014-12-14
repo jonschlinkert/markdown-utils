@@ -15,24 +15,20 @@ var should = require('should');
 var mdu = require('../index');
 
 function readFixture(src) {
-  var args = require(path.join(__dirname, 'fixtures', src + '.js'));
-  return args;
+  return require(path.join(__dirname, 'fixtures', src + '.js'));
 }
 
 function readExpected(src) {
-  var str = fs.readFileSync(path.join(__dirname, 'expected', src + '.md'), 'utf-8');
-  return str;
+  return fs.readFileSync(path.join(__dirname, 'expected', src + '.md'), 'utf-8');
 }
 
 describe('markdown-utils', function() {
-  //ignore .list, because it's WIP
+  // ignore .list, because it's WIP
   mdu = filter(mdu, ['*', '!list']);
   forOwn(mdu, function(fn, name) {
     it('should render: `' + name + '`', function(done) {
-      var fixture = readFixture(name);
-      var actual = fn.apply(fn, fixture);
-      var expected = readExpected(name);
-      actual.should.equal(expected);
+      var actual = fn.apply(fn, readFixture(name)).trim();
+      actual.should.equal(readExpected(name).trim());
       done();
     });
   });
