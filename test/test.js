@@ -1,8 +1,8 @@
 /*!
  * markdown-utils <https://github.com/jonschlinkert/markdown-utils>
  *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
- * Licensed under the MIT license.
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
  */
 
 'use strict';
@@ -11,7 +11,7 @@ var fs = require('fs');
 var path = require('path')
 var forOwn = require('for-own');
 var filter = require('filter-object');
-var should = require('should');
+require('should');
 var mdu = require('../index');
 
 function readFixture(src) {

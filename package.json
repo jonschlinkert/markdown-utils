@@ -7,23 +7,21 @@
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/markdown-utils.git"
-  },
+  "repository": "jonschlinkert/markdown-utils",
   "bugs": {
     "url": "https://github.com/jonschlinkert/markdown-utils/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jonschlinkert/markdown-utils/blob/master/LICENSE-MIT"
-  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "lib/"
+  ],
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "npm install && mocha -R spec -r should"
+    "test": "mocha"
   },
   "dependencies": {
     "array-slice": "^0.2.2",
