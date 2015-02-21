@@ -219,16 +219,20 @@ Create a markdown-formatted listitem.
 
 * `str` **{String}**    
 * `level` **{Number}**    
-* `options` **{String}**    
+* `options` **{String}**  
+    - `bullets` **{String}**: Array of bullets to use. Default `['-', '*', '+', '~']`
+    - `highest` **{Number}**: The highest level heading in the list.
+    - `first` **{String}**: The string to use for indenting when the level is zero.
+      
 
 ```js
-utils.item('Level 0 list item', 0);
+utils.listitem('Level 0 list item', 0);
 //=> '* Level 0 list item'
 
-utils.item('Level 1 list item', 1);
+utils.listitem('Level 1 list item', 1);
 //=> '  * Level 1 list item'
 
-utils.item('Level 2 list item', 2);
+utils.listitem('Level 2 list item', 2);
 //=> '    * Level 2 list item'
 ```
 
