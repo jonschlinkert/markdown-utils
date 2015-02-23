@@ -1,7 +1,7 @@
 {
   "name": "markdown-utils",
   "description": "Create markdown snippets.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/jonschlinkert/markdown-utils",
   "author": {
     "name": "Jon Schlinkert",
@@ -25,15 +25,14 @@
   },
   "dependencies": {
     "array-slice": "^0.2.2",
-    "export-files": "^0.1.4",
-    "is-number": "^0.1.1",
-    "repeat-string": "^1.1.0"
+    "bullets": "^0.1.1",
+    "export-files": "^1.0.0",
+    "is-number": "^1.1.0",
+    "list-item": "^0.1.2"
   },
   "devDependencies": {
-    "filter-object": "^0.2.0",
     "for-own": "^0.1.2",
-    "mocha": "*",
-    "should": "^4.3.0"
+    "helper-resolve": "^0.1.2"
   },
   "keywords": [
     "blog",
