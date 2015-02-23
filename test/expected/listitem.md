@@ -1,1 +1,1 @@
-    * Level 2 list item
+    + Level 2 list item
