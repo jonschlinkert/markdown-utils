@@ -10,7 +10,7 @@
 var fs = require('fs');
 var path = require('path')
 var forOwn = require('for-own');
-var mdu = require('../index');
+var mdu = require('..');
 require('should');
 
 function readFixture(src) {
