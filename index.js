@@ -329,44 +329,6 @@ exports.link = function link(anchor, href, title) {
   return '[' + anchor + '](' + href + title + ')';
 };
 
-
-/**
- * Pass an array of list-item objects to generate a formatted list
- * or table of contents. Uses [list-item] for generating the actual
- * items.
- *
- *
- * ```js
- * var list = [
- *   {text: 'This is item 1', lvl: 0},
- *   {text: 'This is item 2', lvl: 0},
- *   {text: 'This is item 3', lvl: 0},
- *   {text: 'This is sub-item A', lvl: 2},
- *   {text: 'This is sub-item B', lvl: 2},
- *   {text: 'This is sub-item C', lvl: 2},
- * ];
- * list([{text: 'This is a list item', lvl: 0}]);
- *
- * // Results in
- * // '- This is item 1'
- * // '- This is item 2'
- * // '- This is item 3'
- * // '  * This is sub-item A'
- * // '  * This is sub-item B'
- * // '  * This is sub-item C'
- * ```
- *
- * @name .list
- * @param {Array} `list` Array of item objects with `text` and `lvl` properties
- *   @property {String} `text` [list] The text for the list item.
- *   @property {Number} `lvl` [list] The level of the list item to be used for indenting the list.
- * @param {Object} `opts` Options to pass to [list-item].
- * @param {Function} `fn` pass a function [expand-range] to modify the bullet for an item as it's generated.
- * @api public
- */
-
-exports.list = require('bullets');
-
 /**
  * Returns a function to generate a plain-text/markdown list-item,
  * allowing options to be cached for subsequent calls.
