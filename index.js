@@ -379,8 +379,8 @@ exports.li = function li(str, lvl, opts, fn) {
  * @api public
  */
 
-exports.pre = function pre(str, language) {
-  var code = '```' + language;
+exports.pre = function pre(str, lang) {
+  var code = '```' + (lang || '');
   code += '\n';
   code += str;
   code += '\n';
