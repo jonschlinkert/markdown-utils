@@ -10,6 +10,7 @@
 var isNumber = require('is-number');
 var slice = require('array-slice');
 var listitem = require('list-item');
+var codeBlock = require('to-gfm-code-block');
 
 /**
  * Create a markdown-formatted anchor link from the given values.
@@ -367,6 +368,40 @@ exports.li = function li(str, lvl, opts, fn) {
  * ```
  * Results in:
  *
+ * ```html
+ * <pre>
+ * var foo = bar;
+ * </pre>
+ * ```
+ *
+ * @name pre
+ * @param  {String} `str`
+ * @param  {String} `language`
+ * @api public
+ */
+
+exports.pre = function pre(str) {
+  if (typeof str !== 'string') {
+    throw new TypeError('markdown-pre expects a string.');
+  }
+
+  var code = '';
+  code += '<pre>'
+  code += '\n';
+  code += str;
+  code += '\n';
+  code += '</pre>';
+  return code;
+};
+
+/**
+ * Create a markdown-formatted code snippet with or without `lang`.
+ *
+ * ```js
+ * utils.gfm('var foo = bar;', 'js');
+ * ```
+ * Results in:
+ *
  * <pre>
  * ```js
  * var foo = bar;
@@ -379,13 +414,11 @@ exports.li = function li(str, lvl, opts, fn) {
  * @api public
  */
 
-exports.pre = function pre(str, lang) {
-  var code = '```' + (lang || '');
-  code += '\n';
-  code += str;
-  code += '\n';
-  code += '```';
-  return code;
+exports.gfm = function gfm(str, lang) {
+  if (typeof str !== 'string') {
+    throw new TypeError('markdown-gfm expects a string.');
+  }
+  return codeBlock(str, lang);
 };
 
 /**
