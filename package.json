@@ -1,7 +1,7 @@
 {
   "name": "markdown-utils",
   "description": "Micro-utils for creating markdown snippets.",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "homepage": "https://github.com/jonschlinkert/markdown-utils",
   "author": {
     "name": "Jon Schlinkert",
@@ -32,7 +32,8 @@
   "dependencies": {
     "array-slice": "^0.2.2",
     "is-number": "^1.1.0",
-    "list-item": "^0.1.2"
+    "list-item": "^0.1.2",
+    "to-gfm-code-block": "^0.1.1"
   },
   "devDependencies": {
     "for-own": "^0.1.2",
