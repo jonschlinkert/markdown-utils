@@ -7,6 +7,9 @@
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
   },
+ "contributors": [
+    "Anders D. Johnson (https://github.com/adjohnson916)"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/jonschlinkert/markdown-utils.git"
