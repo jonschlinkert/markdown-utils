@@ -2,7 +2,7 @@
 
 > Micro-utils for creating markdown snippets.
 
-**Heads up!** `.list()` was removed in 0.6.0. If you still need this functionality use [bullets](https://github.com/jonschlinkert/bullets)instead.
+**Heads up!** `.list()` was removed in 0.6.0. If you still need this functionality use [bullets](https://github.com/jonschlinkert/bullets) instead.
 
 Install with [npm](https://www.npmjs.com/)
 
