@@ -1,3 +1,3 @@
-```js
+<pre>
 var foo = parseInt(bar);
-```
+</pre>
