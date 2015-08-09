@@ -29,7 +29,7 @@
   "dependencies": {
     "array-slice": "^0.2.2",
     "is-number": "^1.1.0",
-    "list-item": "^0.1.2",
+    "list-item": "^1.0.1",
     "to-gfm-code-block": "^0.1.1"
   },
   "devDependencies": {
