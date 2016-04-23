@@ -1,7 +1,7 @@
 {
   "name": "markdown-utils",
   "description": "Micro-utils for creating markdown snippets.",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "homepage": "https://github.com/jonschlinkert/markdown-utils",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/markdown-utils",
