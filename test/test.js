@@ -8,26 +8,38 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
+var assert = require('assert');
 var forOwn = require('for-own');
 var mdu = require('..');
-require('should');
 
-function readFixture(src) {
-  return require(path.join(__dirname, 'fixtures', src + '.js'));
+function requireFile(name, dir) {
+  return require(path.join(__dirname, (dir || 'fixtures'), name + '.js'));
 }
 
-function readExpected(src) {
-  return fs.readFileSync(path.join(__dirname, 'expected', src + '.md'), 'utf-8');
+function readFile(name) {
+  return fs.readFileSync(path.join(__dirname, 'expected', name + '.md'), 'utf-8');
 }
 
 describe('markdown-utils', function() {
   forOwn(mdu, function(fn, name) {
-    it('should render: `' + name + '`', function(done) {
-      var actual = fn.apply(fn, readFixture(name)).trim();
-      actual.should.equal(readExpected(name).trim());
-      done();
+    it('should render: `' + name + '`', function() {
+      var fixture = requireFile(name);
+      var expected;
+      if (Array.isArray(fixture[0])) {
+        expected = requireFile(name, 'expected');
+        fixture.forEach(function(str, i) {
+          runTest(fn, name, str, expected[i].trim());
+        });
+      } else {
+        expected = readFile(name).trim();
+        runTest(fn, name, fixture, expected);
+      }
     });
   });
 });
 
+function runTest(fn, name, fixture, expected) {
+  var actual = fn.apply(fn, fixture).trim();
+  assert.equal(actual, expected);
+}

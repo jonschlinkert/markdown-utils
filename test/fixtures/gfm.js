@@ -1,7 +1,10 @@
 'use strict';
 
 /**
- * Create a markdown-formatted `<pre><code></code></pre>` snippet with or without lang.
+ * Create a gfm code block
  */
 
-module.exports = ['var foo = parseInt(bar);', 'js']
+module.exports = [
+  ['var foo = parseInt(bar);', 'js'],
+  ['var foo = parseInt(bar);']
+];

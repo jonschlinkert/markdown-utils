@@ -13,58 +13,6 @@ var listitem = require('list-item');
 var codeBlock = require('to-gfm-code-block');
 
 /**
- * Create a markdown-formatted anchor link from the given values.
- *
- * ```js
- * utils.anchor('embed', 'assemble/handlebars-helpers/lib/code.js', 25, 'v0.6.0');
- * //=> [embed](https://github.com/assemble/handlebars-helpers/blob/v0.6.0/lib/helpers/code.js#L25)
- * ```
- *
- * @name anchor
- * @param  {String} `anchor`
- * @param  {String} `href`
- * @param  {String} `title`
- * @api public
- */
-
-exports.anchor = function anchor(text, repo, line, branch) {
-  return '[' + text + '](' + format(repo, branch, line) + ')';
-};
-
-function format(str, branch, line) {
-  var segs = str.split(/[\\\/]/);
-  var repo = slice(segs, 0, 2).join('/');
-  var rest = slice(segs, 2).join('/');
-  if (isNumber(branch)) {
-    line = branch;
-    branch = 'master';
-  }
-  var res = 'https://github.com/';
-  res += (repo + '/blob/' + branch + '/' + rest);
-  res += (line ? '#L' + line : '');
-  return res;
-}
-
-/**
- * Create a markdown-formatted badge.
- *
- * ```js
- * utils.badge(alt, img_url, url);
- * //=> [![Build Status](https://travis-ci.org/jonschlinkert/template.svg)](https://travis-ci.org/jonschlinkert/template)
- * ```
- *
- * @name badge
- * @param  {String} `alt`
- * @param  {String} `img_url`
- * @param  {String} `url`
- * @api public
- */
-
-exports.badge = function badge(alt, img_url, url) {
-  return exports.link(exports.image(alt, img_url), url);
-};
-
-/**
  * Create a markdown-formatted blockquote.
  *
  * ```js
@@ -288,6 +236,77 @@ exports.hr = function hr(str) {
 };
 
 /**
+ * Create a markdown-formatted link from the given values.
+ *
+ * ```js
+ * utils.link('fs-utils', 'https://github.com/assemble/fs-utils', 'hover title');
+ * //=> [fs-utils](https://github.com/assemble/fs-utils "hover title")
+ * ```
+ *
+ * @name link
+ * @param  {String} `anchor`
+ * @param  {String} `href`
+ * @param  {String} `title`
+ * @api public
+ */
+
+exports.link = function link(anchor, href, title) {
+  return '[' + anchor + '](' + href + (title ? ' "' + title + '"' : '') + ')';
+};
+
+/**
+ * Create a markdown-formatted anchor link from the given values.
+ *
+ * ```js
+ * utils.anchor('embed', 'assemble/handlebars-helpers/lib/code.js', 25, 'v0.6.0');
+ * //=> [embed](https://github.com/assemble/handlebars-helpers/blob/v0.6.0/lib/helpers/code.js#L25)
+ * ```
+ *
+ * @name anchor
+ * @param  {String} `anchor`
+ * @param  {String} `href`
+ * @param  {String} `title`
+ * @api public
+ */
+
+exports.anchor = function anchor(text, repo, line, branch) {
+  return '[' + text + '](' + format(repo, branch, line) + ')';
+};
+
+function format(str, branch, line) {
+  var segs = str.split(/[\\\/]/);
+  var repo = slice(segs, 0, 2).join('/');
+  var rest = slice(segs, 2).join('/');
+  if (isNumber(branch)) {
+    line = branch;
+    branch = 'master';
+  }
+  var res = 'https://github.com/';
+  res += (repo + '/blob/' + branch + '/' + rest);
+  res += (line ? '#L' + line : '');
+  return res;
+}
+
+/**
+ * Create a markdown-formatted reference link from the given values.
+ *
+ * ```js
+ * utils.reference('template', 'https://github/jonschlinkert/template', 'Make stuff!');
+ * //=> [template]: https://github/jonschlinkert/template "Make stuff!"
+ * ```
+ *
+ * @name reference
+ * @param  {String} `id`
+ * @param  {String} `url`
+ * @param  {String} `title`
+ * @api public
+ */
+
+exports.reference = function reference(id, url, title) {
+  return '[' + id + ']: ' + url + (title ? ' "' + title + '"' : '');
+};
+
+/**
  * Create a markdown-formatted image from the given values.
  *
  * ```js
@@ -306,28 +325,26 @@ exports.hr = function hr(str) {
  */
 
 exports.image = function image(alt, src, title) {
-  title = title ? ' "' + title + '"' : '';
-  return '![' + alt + '](' + src + title + ')';
+  return '!' + exports.link(alt, src, title);
 };
 
 /**
- * Create a markdown-formatted link from the given values.
+ * Create a markdown-formatted badge.
  *
  * ```js
- * utils.link('fs-utils', 'https://github.com/assemble/fs-utils', 'hover title');
- * //=> [fs-utils](https://github.com/assemble/fs-utils "hover title")
+ * utils.badge(alt, img_url, url);
+ * //=> [![Build Status](https://travis-ci.org/jonschlinkert/template.svg)](https://travis-ci.org/jonschlinkert/template)
  * ```
  *
- * @name link
- * @param  {String} `anchor`
- * @param  {String} `href`
- * @param  {String} `title`
+ * @name badge
+ * @param  {String} `alt`
+ * @param  {String} `img_url`
+ * @param  {String} `url`
  * @api public
  */
 
-exports.link = function link(anchor, href, title) {
-  title = title ? ' "' + title + '"' : '';
-  return '[' + anchor + '](' + href + title + ')';
+exports.badge = function badge(alt, img_url, url, title) {
+  return exports.link(exports.image(alt, img_url, title), url);
 };
 
 /**
@@ -419,26 +436,6 @@ exports.gfm = function gfm(str, lang) {
     throw new TypeError('markdown-gfm expects a string.');
   }
   return codeBlock(str, lang);
-};
-
-/**
- * Create a markdown-formatted reference link from the given values.
- *
- * ```js
- * utils.reference('template', 'https://github/jonschlinkert/template', 'Make stuff!');
- * //=> [template]: https://github/jonschlinkert/template "Make stuff!"
- * ```
- *
- * @name reference
- * @param  {String} `id`
- * @param  {String} `url`
- * @param  {String} `title`
- * @api public
- */
-
-exports.reference = function reference(id, url, title) {
-  title = title ? ' "' + title + '"' : '';
-  return '[' + id + ']: ' + url + title;
 };
 
 /**
