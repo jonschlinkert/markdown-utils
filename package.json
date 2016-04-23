@@ -1,26 +1,16 @@
 {
   "name": "markdown-utils",
   "description": "Micro-utils for creating markdown snippets.",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "homepage": "https://github.com/jonschlinkert/markdown-utils",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
- "contributors": [
-    "Anders D. Johnson (https://github.com/adjohnson916)"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/markdown-utils.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/markdown-utils",
   "bugs": {
     "url": "https://github.com/jonschlinkert/markdown-utils/issues"
   },
   "license": "MIT",
   "files": [
-    "index.js",
-    "lib/"
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
@@ -30,15 +20,14 @@
     "test": "mocha"
   },
   "dependencies": {
-    "array-slice": "^0.2.2",
-    "is-number": "^1.1.0",
-    "list-item": "^1.0.1",
+    "array-slice": "^0.2.3",
+    "is-number": "^2.1.0",
+    "list-item": "^1.1.1",
     "to-gfm-code-block": "^0.1.1"
   },
   "devDependencies": {
     "for-own": "^0.1.2",
-    "mocha": "^2.2.5",
-    "should": "^5.0.1"
+    "gulp-format-md": "^0.1.8"
   },
   "keywords": [
     "blog",
@@ -51,5 +40,30 @@
     "renderer",
     "util",
     "write"
-  ]
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "gfm-code-blocks",
+        "markdown-link",
+        "markdown-toc",
+        "remarkable"
+      ]
+    },
+    "reflinks": [
+      "bullets",
+      "verb"
+    ],
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
 }
