@@ -1,16 +1,14 @@
 /*!
  * markdown-utils <https://github.com/jonschlinkert/markdown-utils>
  *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Copyright (c) 2014-2018, Jon Schlinkert, contributors.
  * Licensed under the MIT license.
  */
 
 'use strict';
 
-var isNumber = require('is-number');
-var slice = require('array-slice');
-var listitem = require('list-item');
-var codeBlock = require('to-gfm-code-block');
+const isNumber = require('is-number');
+const listitem = require('list-item');
 
 /**
  * Create a markdown-formatted blockquote.
@@ -19,49 +17,37 @@ var codeBlock = require('to-gfm-code-block');
  * utils.blockquote('This is a blockquote');
  * //=> '> This is a blockquote'
  * ```
- *
- * @name blockquote
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.blockquote = function blockquote(str) {
-  return '> ' + str;
-};
+exports.blockquote = str => str ? `> ${str}` : '';
 
 /**
  * Create a markdown-formatted `<code></code>` snippet.
  *
  * ```js
- * utils.code('var foo = bar;');
- * //=> '`var foo = bar;`'
+ * utils.code('const foo = bar;');
+ * //=> '`const foo = bar;`'
  * ```
- *
- * @name code
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.code = function code(str) {
-  return '`' + str + '`';
-};
+exports.code = str => str ? `\`${str}\`` : '';
 
 /**
- * Create markdown-formatted `<del></del>`.
+ * Create markdown-formatted deleted text: `~~text~~`.
  *
  * ```js
  * utils.del('text');
  * //=> '~~text~~'
  * ```
- *
- * @name del
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.del = function del(str) {
-  return '~~' + str + '~~';
-};
+exports.del = str => str ? `~~${str}~~` : '';
 
 /**
  * Create a markdown-formatted em.
@@ -70,15 +56,11 @@ exports.del = function del(str) {
  * utils.em('This is emphasized');
  * //=> '_This is emphasized_'
  * ```
- *
- * @name em
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.em = function em(str) {
-  return '_' + str + '_';
-};
+exports.em = str => str ? `_${str}_` : '';
 
 /**
  * Create a markdown-formatted heading.
@@ -87,16 +69,12 @@ exports.em = function em(str) {
  * utils.h(1, 'This is a heading');
  * //=> '# This is a heading'
  * ```
- *
- * @name h
- * @param  {String} `str`
- * @param  {Number} `level`
+ * @param {String} `str`
+ * @param {Number} `level`
  * @api public
  */
 
-exports.h = function h(level, str) {
-  return exports.heading(str, level);
-};
+exports.h = (level, str) => str ? exports.heading(str, level) : '';
 
 /**
  * Create a markdown-formatted h1 heading.
@@ -105,15 +83,11 @@ exports.h = function h(level, str) {
  * utils.h1('This is a heading');
  * //=> '# This is a heading'
  * ```
- *
- * @name h1
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.h1 = function h1(str) {
-  return '# ' + str;
-};
+exports.h1 = str => str ? `# ${str}` : '';
 
 /**
  * Create a markdown-formatted h2 heading.
@@ -122,15 +96,11 @@ exports.h1 = function h1(str) {
  * utils.h2('This is a heading');
  * //=> '## This is a heading'
  * ```
- *
- * @name h2
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.h2 = function h2(str) {
-  return '## ' + str;
-};
+exports.h2 = str => str ? `## ${str}` : '';
 
 /**
  * Create a markdown-formatted h3 heading.
@@ -139,15 +109,11 @@ exports.h2 = function h2(str) {
  * utils.h3('This is a heading');
  * //=> '### This is a heading'
  * ```
- *
- * @name h3
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.h3 = function h3(str) {
-  return '### ' + str;
-};
+exports.h3 = str => str ? `### ${str}` : '';
 
 /**
  * Create a markdown-formatted h4 heading.
@@ -156,15 +122,11 @@ exports.h3 = function h3(str) {
  * utils.h4('This is a heading');
  * //=> '#### This is a heading'
  * ```
- *
- * @name h4
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.h4 = function h4(str) {
-  return '#### ' + str;
-};
+exports.h4 = str => str ? `#### ${str}` : '';
 
 /**
  * Create a markdown-formatted h5 heading.
@@ -173,15 +135,11 @@ exports.h4 = function h4(str) {
  * utils.h5('This is a heading');
  * //=> '##### This is a heading'
  * ```
- *
- * @name h5
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.h5 = function h5(str) {
-  return '##### ' + str;
-};
+exports.h5 = str => str ? `##### ${str}` : '';
 
 /**
  * Create a markdown-formatted h6 heading.
@@ -190,15 +148,11 @@ exports.h5 = function h5(str) {
  * utils.h6('This is a heading');
  * //=> '###### This is a heading'
  * ```
- *
- * @name h6
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.h6 = function h6(str) {
-  return '###### ' + str;
-};
+exports.h6 = str => str ? `###### ${str}` : '';
 
 /**
  * Create a markdown-formatted heading.
@@ -207,16 +161,12 @@ exports.h6 = function h6(str) {
  * utils.heading('This is a heading', 1);
  * //=> '# This is a heading'
  * ```
- *
- * @name heading
- * @param  {String} `str`
- * @param  {Number} `level`
+ * @param {String} `str`
+ * @param {Number} `level`
  * @api public
  */
 
-exports.heading = function heading(str, level) {
-  return exports['h' + (level || 1)](str);
-};
+exports.heading = (str, level) => str ? exports[`h${(level || 1)}`](str) : '';
 
 /**
  * Create a markdown-formatted horizontal rule.
@@ -225,15 +175,11 @@ exports.heading = function heading(str, level) {
  * utils.hr();
  * //=> '***'
  * ```
- *
- * @name hr
- * @param  {String} `str` Alternate string to use. Default is `***` to avoid collision with `---` which is used for front matter.
+ * @param {String} `str` Alternate string to use. Default is `***` to avoid collision with `---` which is commonly used for front-matter.
  * @api public
  */
 
-exports.hr = function hr(str) {
-  return str || '***';
-};
+exports.hr = (str = '***') => str;
 
 /**
  * Create a markdown-formatted link from the given values.
@@ -242,16 +188,14 @@ exports.hr = function hr(str) {
  * utils.link('fs-utils', 'https://github.com/assemble/fs-utils', 'hover title');
  * //=> [fs-utils](https://github.com/assemble/fs-utils "hover title")
  * ```
- *
- * @name link
- * @param  {String} `anchor`
- * @param  {String} `href`
- * @param  {String} `title`
+ * @param {String} `anchor`
+ * @param {String} `href`
+ * @param {String} `title`
  * @api public
  */
 
-exports.link = function link(anchor, href, title) {
-  return '[' + anchor + '](' + href + (title ? ' "' + title + '"' : '') + ')';
+exports.link = (anchor, href, title) => {
+  return `[${anchor}](${href}${title ? ` "${title}"` : ''})`;
 };
 
 /**
@@ -261,29 +205,27 @@ exports.link = function link(anchor, href, title) {
  * utils.anchor('embed', 'assemble/handlebars-helpers/lib/code.js', 25, 'v0.6.0');
  * //=> [embed](https://github.com/assemble/handlebars-helpers/blob/v0.6.0/lib/helpers/code.js#L25)
  * ```
- *
- * @name anchor
- * @param  {String} `anchor`
- * @param  {String} `href`
- * @param  {String} `title`
+ * @param {String} `anchor`
+ * @param {String} `href`
+ * @param {String} `title`
  * @api public
  */
 
-exports.anchor = function anchor(text, repo, line, branch) {
-  return '[' + text + '](' + format(repo, branch, line) + ')';
+exports.anchor = (text, repo, line, branch) => {
+  return `[${text}](${format(repo, branch, line)})`;
 };
 
 function format(str, branch, line) {
-  var segs = str.split(/[\\\/]/);
-  var repo = slice(segs, 0, 2).join('/');
-  var rest = slice(segs, 2).join('/');
+  let segs = str.split(/[\\\/]/);
+  let repo = segs.slice(0, 2).join('/');
+  let rest = segs.slice(2).join('/');
   if (isNumber(branch)) {
     line = branch;
     branch = 'master';
   }
-  var res = 'https://github.com/';
-  res += (repo + '/blob/' + branch + '/' + rest);
-  res += (line ? '#L' + line : '');
+  let res = 'https://github.com/';
+  res += `${repo}/blob/${branch}/${rest}`;
+  res += line ? `#L${line}` : '';
   return res;
 }
 
@@ -294,16 +236,14 @@ function format(str, branch, line) {
  * utils.reference('template', 'https://github/jonschlinkert/template', 'Make stuff!');
  * //=> [template]: https://github/jonschlinkert/template "Make stuff!"
  * ```
- *
- * @name reference
- * @param  {String} `id`
- * @param  {String} `url`
- * @param  {String} `title`
+ * @param {String} `id`
+ * @param {String} `url`
+ * @param {String} `title`
  * @api public
  */
 
-exports.reference = function reference(id, url, title) {
-  return '[' + id + ']: ' + url + (title ? ' "' + title + '"' : '');
+exports.reference = (id, url, title) => {
+  return `[${id}]: ${url}${title ? ` "${title}"` : ''}`;
 };
 
 /**
@@ -316,17 +256,13 @@ exports.reference = function reference(id, url, title) {
  * utils.image(alt, src, title);
  * //=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg "This is title of image!")
  * ```
- *
- * @name image
- * @param  {String} `alt`
- * @param  {String} `src`
- * @param  {String} `title`
+ * @param {String} `alt`
+ * @param {String} `src`
+ * @param {String} `title`
  * @api public
  */
 
-exports.image = function image(alt, src, title) {
-  return '!' + exports.link(alt, src, title);
-};
+exports.image = (alt, src, title) => '!' + exports.link(alt, src, title);
 
 /**
  * Create a markdown-formatted badge.
@@ -335,15 +271,13 @@ exports.image = function image(alt, src, title) {
  * utils.badge(alt, img_url, url);
  * //=> [![Build Status](https://travis-ci.org/jonschlinkert/template.svg)](https://travis-ci.org/jonschlinkert/template)
  * ```
- *
- * @name badge
- * @param  {String} `alt`
- * @param  {String} `img_url`
- * @param  {String} `url`
+ * @param {String} `alt`
+ * @param {String} `img_url`
+ * @param {String} `url`
  * @api public
  */
 
-exports.badge = function badge(alt, img_url, url, title) {
+exports.badge = (alt, img_url, url, title) => {
   return exports.link(exports.image(alt, img_url, title), url);
 };
 
@@ -352,7 +286,7 @@ exports.badge = function badge(alt, img_url, url, title) {
  * allowing options to be cached for subsequent calls.
  *
  * ```js
- * var li = listitem(options);
+ * const li = listitem(options);
  *
  * li(0, 'Level 0 list item');
  * //=> '- Level 0 list item'
@@ -363,79 +297,58 @@ exports.badge = function badge(alt, img_url, url, title) {
  * li(2, 'Level 2 list item');
  * //=> '    + Level 2 list item'
  * ```
- *
- * @name .li
- * @param  {String} `options`
+ * @param {String} `options`
  *   @option {Boolean} [options] `nobullet` Pass true if you only want the list iten and identation, but no bullets.
  *   @option {String} [options] `indent` The amount of leading indentation to use. default is `  `.
- *   @option {String|Array} [options] `chars` If a string is passed, [expand-range] will be used to generate an array of bullets (visit [expand-range] to see all options.) Or directly pass an array of bullets, numbers, letters or other characters to use for each list item. Default `['-', '*', '+', '~']`
- * @param {Function} `fn` pass a function [expand-range] to modify the bullet for an item as it's generated. See the [examples].
+ *   @option {String|Array} [options] `chars` If a string is passed, [fill-range] will be used to generate an array of bullets (visit [fill-range] to see all options.) Or directly pass an array of bullets, numbers, letters or other characters to use for each list item. Default `['-', '*', '+', '~']`
+ * @param {Function} `fn` pass a function [fill-range] to modify the bullet for an item as it's generated.
  * @api public
  */
 
-exports.li = function li(str, lvl, opts, fn) {
-  return listitem(opts, fn)(lvl, str);
-};
+exports.li = (char, level, options, fn) => listitem(options, fn)(level, char);
 
 /**
  * Create a markdown-formatted `<pre><code></code></pre>` snippet with or without lang.
  *
  * ```js
- * utils.pre('var foo = bar;');
+ * utils.pre('const foo = bar;');
  * ```
  * Results in:
  *
  * ```html
  * <pre>
- * var foo = bar;
+ * const foo = bar;
  * </pre>
  * ```
- *
- * @name pre
- * @param  {String} `str`
- * @param  {String} `language`
+ * @param {String} `str`
+ * @param {String} `language`
  * @api public
  */
 
-exports.pre = function pre(str) {
-  if (typeof str !== 'string') {
-    throw new TypeError('markdown-pre expects a string.');
-  }
-
-  var code = '';
-  code += '<pre>'
-  code += '\n';
-  code += str;
-  code += '\n';
-  code += '</pre>';
-  return code;
-};
+exports.pre = str => str ? `<pre>\n${str}\n</pre>` : '';
 
 /**
  * Create a markdown-formatted code snippet with or without `lang`.
  *
  * ```js
- * utils.gfm('var foo = bar;', 'js');
+ * utils.gfm('const foo = bar;', 'js');
  * ```
  * Results in:
  *
  * <pre>
  * ```js
- * var foo = bar;
+ * const foo = bar;
  * ```
  * </pre>
  *
- * @name pre
- * @param  {String} `str`
- * @param  {String} `language`
+ * @param {String} `str`
+ * @param {String} `language`
  * @api public
  */
 
-exports.gfm = function gfm(str, lang) {
-  if (typeof str !== 'string') {
-    throw new TypeError('markdown-gfm expects a string.');
-  }
-  return codeBlock(str, lang);
+exports.gfm = (str, lang = '') => {
+  let fence = '```';
+  return str ? `${fence}${lang}\n${str}\n${fence}` : '';
 };
 
 /**
@@ -445,15 +358,11 @@ exports.gfm = function gfm(str, lang) {
  * utils.strong('This is bold');
  * //=> '**This is bold**'
  * ```
- *
- * @name strong
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.strong = function strong(str) {
-  return '**' + str + '**';
-};
+exports.strong = str => str ? `**${str}**` : '';
 
 /**
  * Create a markdown-formatted todo item.
@@ -465,13 +374,10 @@ exports.strong = function strong(str) {
  * utils.todo('this is a completed todo.', true);
  * //=> '- [x] this is a todo'
  * ```
- *
- * @name todo
- * @param  {String} `str`
+ * @param {String} `str`
  * @api public
  */
 
-exports.todo = function todo(str, checked) {
-  return (checked ? '- [x] ' : '- [ ] ') + str;
+exports.todo = (str, checked) => {
+  return str ? ((checked ? '- [x] ' : '- [ ] ') + str) : '';
 };
-

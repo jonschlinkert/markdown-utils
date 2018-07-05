@@ -1,46 +1,39 @@
-/*!
- * markdown-utils <https://github.com/jonschlinkert/markdown-utils>
- *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT License.
- */
-
 'use strict';
 
 require('mocha');
-var fs = require('fs');
-var path = require('path');
-var assert = require('assert');
-var forOwn = require('for-own');
-var mdu = require('..');
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert');
+const mdu = require('..');
+const tests = path.join.bind(path, __dirname);
 
 function requireFile(name, dir) {
-  return require(path.join(__dirname, (dir || 'fixtures'), name + '.js'));
+  return require(tests((dir || 'fixtures'), `${name}.js`));
 }
 
 function readFile(name) {
-  return fs.readFileSync(path.join(__dirname, 'expected', name + '.md'), 'utf-8');
+  return fs.readFileSync(tests('expected', `${name}.md`), 'utf-8');
 }
 
-describe('markdown-utils', function() {
-  forOwn(mdu, function(fn, name) {
-    it('should render: `' + name + '`', function() {
-      var fixture = requireFile(name);
-      var expected;
+describe('markdown-utils', () => {
+  for (const name of Object.keys(mdu)) {
+    it(`.${name}`, () => {
+      let fixture = requireFile(name);
+      let expected;
       if (Array.isArray(fixture[0])) {
         expected = requireFile(name, 'expected');
-        fixture.forEach(function(str, i) {
-          runTest(fn, name, str, expected[i].trim());
+        fixture.forEach((val, i) => {
+          runTest(mdu[name], name, val, expected[i].trim());
         });
       } else {
         expected = readFile(name).trim();
-        runTest(fn, name, fixture, expected);
+        runTest(mdu[name], name, fixture, expected);
       }
     });
-  });
+  }
 });
 
 function runTest(fn, name, fixture, expected) {
-  var actual = fn.apply(fn, fixture).trim();
+  let actual = fn.apply(fn, fixture).trim();
   assert.equal(actual, expected);
 }
