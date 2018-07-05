@@ -1,24 +1,26 @@
-# markdown-utils [![NPM version](https://img.shields.io/npm/v/markdown-utils.svg?style=flat)](https://www.npmjs.com/package/markdown-utils) [![NPM downloads](https://img.shields.io/npm/dm/markdown-utils.svg?style=flat)](https://npmjs.org/package/markdown-utils) [![Build Status](https://img.shields.io/travis/jonschlinkert/markdown-utils.svg?style=flat)](https://travis-ci.org/jonschlinkert/markdown-utils)
+# markdown-utils [![NPM version](https://img.shields.io/npm/v/markdown-utils.svg?style=flat)](https://www.npmjs.com/package/markdown-utils) [![NPM monthly downloads](https://img.shields.io/npm/dm/markdown-utils.svg?style=flat)](https://npmjs.org/package/markdown-utils) [![NPM total downloads](https://img.shields.io/npm/dt/markdown-utils.svg?style=flat)](https://npmjs.org/package/markdown-utils) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/markdown-utils.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/markdown-utils)
 
-Micro-utils for creating markdown snippets.
+> Tiny helpers for creating consistenly-formatted markdown snippets.
+
+Please consider following this project's author, [Jon Schlinkert](https://github.com/jonschlinkert), and consider starring the project to show your :heart: and support.
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install markdown-utils --save
+$ npm install --save markdown-utils
 ```
 
 ## Usage
 
 ```js
-var mdu = require('markdown-utils');
+const mdu = require('markdown-utils');
 ```
 
 ## API
 
-### [.blockquote](index.js#L28)
+### [.blockquote](index.js#L24)
 
 Create a markdown-formatted blockquote.
 
@@ -33,7 +35,7 @@ utils.blockquote('This is a blockquote');
 //=> '> This is a blockquote'
 ```
 
-### [.code](index.js#L45)
+### [.code](index.js#L37)
 
 Create a markdown-formatted `<code></code>` snippet.
 
@@ -44,13 +46,13 @@ Create a markdown-formatted `<code></code>` snippet.
 **Example**
 
 ```js
-utils.code('var foo = bar;');
-//=> '`var foo = bar;`'
+utils.code('const foo = bar;');
+//=> '`const foo = bar;`'
 ```
 
-### [.del](index.js#L62)
+### [.del](index.js#L50)
 
-Create markdown-formatted `<del></del>`.
+Create markdown-formatted deleted text: `~~text~~`.
 
 **Params**
 
@@ -63,7 +65,7 @@ utils.del('text');
 //=> '~~text~~'
 ```
 
-### [.em](index.js#L79)
+### [.em](index.js#L63)
 
 Create a markdown-formatted em.
 
@@ -78,7 +80,7 @@ utils.em('This is emphasized');
 //=> '_This is emphasized_'
 ```
 
-### [.h](index.js#L97)
+### [.h](index.js#L77)
 
 Create a markdown-formatted heading.
 
@@ -94,7 +96,7 @@ utils.h(1, 'This is a heading');
 //=> '# This is a heading'
 ```
 
-### [.h1](index.js#L114)
+### [.h1](index.js#L90)
 
 Create a markdown-formatted h1 heading.
 
@@ -109,7 +111,7 @@ utils.h1('This is a heading');
 //=> '# This is a heading'
 ```
 
-### [.h2](index.js#L131)
+### [.h2](index.js#L103)
 
 Create a markdown-formatted h2 heading.
 
@@ -124,7 +126,7 @@ utils.h2('This is a heading');
 //=> '## This is a heading'
 ```
 
-### [.h3](index.js#L148)
+### [.h3](index.js#L116)
 
 Create a markdown-formatted h3 heading.
 
@@ -139,7 +141,7 @@ utils.h3('This is a heading');
 //=> '### This is a heading'
 ```
 
-### [.h4](index.js#L165)
+### [.h4](index.js#L129)
 
 Create a markdown-formatted h4 heading.
 
@@ -154,7 +156,7 @@ utils.h4('This is a heading');
 //=> '#### This is a heading'
 ```
 
-### [.h5](index.js#L182)
+### [.h5](index.js#L142)
 
 Create a markdown-formatted h5 heading.
 
@@ -169,7 +171,7 @@ utils.h5('This is a heading');
 //=> '##### This is a heading'
 ```
 
-### [.h6](index.js#L199)
+### [.h6](index.js#L155)
 
 Create a markdown-formatted h6 heading.
 
@@ -184,7 +186,7 @@ utils.h6('This is a heading');
 //=> '###### This is a heading'
 ```
 
-### [.heading](index.js#L217)
+### [.heading](index.js#L169)
 
 Create a markdown-formatted heading.
 
@@ -200,13 +202,13 @@ utils.heading('This is a heading', 1);
 //=> '# This is a heading'
 ```
 
-### [.hr](index.js#L234)
+### [.hr](index.js#L182)
 
 Create a markdown-formatted horizontal rule.
 
 **Params**
 
-* `str` **{String}**: Alternate string to use. Default is `***` to avoid collision with `---` which is used for front matter.
+* `str` **{String}**: Alternate string to use. Default is `***` to avoid collision with `---` which is commonly used for front-matter.
 
 **Example**
 
@@ -215,7 +217,7 @@ utils.hr();
 //=> '***'
 ```
 
-### [.link](index.js#L253)
+### [.link](index.js#L197)
 
 Create a markdown-formatted link from the given values.
 
@@ -232,7 +234,7 @@ utils.link('fs-utils', 'https://github.com/assemble/fs-utils', 'hover title');
 //=> [fs-utils](https://github.com/assemble/fs-utils "hover title")
 ```
 
-### [.anchor](index.js#L272)
+### [.anchor](index.js#L214)
 
 Create a markdown-formatted anchor link from the given values.
 
@@ -249,7 +251,7 @@ utils.anchor('embed', 'assemble/handlebars-helpers/lib/code.js', 25, 'v0.6.0');
 //=> [embed](https://github.com/assemble/handlebars-helpers/blob/v0.6.0/lib/helpers/code.js#L25)
 ```
 
-### [.reference](index.js#L305)
+### [.reference](index.js#L245)
 
 Create a markdown-formatted reference link from the given values.
 
@@ -266,7 +268,7 @@ utils.reference('template', 'https://github/jonschlinkert/template', 'Make stuff
 //=> [template]: https://github/jonschlinkert/template "Make stuff!"
 ```
 
-### [.image](index.js#L327)
+### [.image](index.js#L265)
 
 Create a markdown-formatted image from the given values.
 
@@ -286,7 +288,7 @@ utils.image(alt, src, title);
 //=> ![Build Status](https://travis-ci.org/jonschlinkert/template.svg "This is title of image!")
 ```
 
-### [.badge](index.js#L346)
+### [.badge](index.js#L280)
 
 Create a markdown-formatted badge.
 
@@ -303,26 +305,23 @@ utils.badge(alt, img_url, url);
 //=> [![Build Status](https://travis-ci.org/jonschlinkert/template.svg)](https://travis-ci.org/jonschlinkert/template)
 ```
 
-### [.li](index.js#L376)
+### [.li](index.js#L308)
 
 Returns a function to generate a plain-text/markdown list-item, allowing options to be cached for subsequent calls.
 
 **Params**
 
-* 
-`options` **{String}**
+* `options` **{String}**  
 
 - `nobullet` **{Boolean}**: Pass true if you only want the list iten and identation, but no bullets.
 - `indent` **{String}**: The amount of leading indentation to use. default is ``.
-- `chars` **{String|Array}**: If a string is passed, [expand-range] will be used to generate an array of bullets (visit [expand-range] to see all options.) Or directly pass an array of bullets, numbers, letters or other characters to use for each list item. Default `['-', '*', '+', '~']`
-
-* 
-`fn` **{Function}**: pass a function [expand-range] to modify the bullet for an item as it's generated. See the [examples].
+- `chars` **{String|Array}**: If a string is passed, [fill-range](https://github.com/jonschlinkert/fill-range) will be used to generate an array of bullets (visit [fill-range](https://github.com/jonschlinkert/fill-range) to see all options.) Or directly pass an array of bullets, numbers, letters or other characters to use for each list item. Default `['-', '*', '+', '~']`
+* `fn` **{Function}**: pass a function [fill-range](https://github.com/jonschlinkert/fill-range) to modify the bullet for an item as it's generated.
 
 **Example**
 
 ```js
-var li = listitem(options);
+const li = listitem(options);
 
 li(0, 'Level 0 list item');
 //=> '- Level 0 list item'
@@ -334,7 +333,7 @@ li(2, 'Level 2 list item');
 //=> '    + Level 2 list item'
 ```
 
-### [.pre](index.js#L400)
+### [.pre](index.js#L328)
 
 Create a markdown-formatted `<pre><code></code></pre>` snippet with or without lang.
 
@@ -348,16 +347,16 @@ Results in:
 **Examples**
 
 ```js
-utils.pre('var foo = bar;');
+utils.pre('const foo = bar;');
 ```
 
 ```html
 <pre>
-var foo = bar;
+const foo = bar;
 </pre>
 ```
 
-### [.pre](index.js#L434)
+### [.gfm](index.js#L349)
 
 Create a markdown-formatted code snippet with or without `lang`.
 
@@ -373,14 +372,14 @@ Results in:
 **Examples**
 
 ```js
-utils.gfm('var foo = bar;', 'js');
+utils.gfm('const foo = bar;', 'js');
 ```
 
 ```js
-var foo = bar;
+const foo = bar;
 ```
 
-### [.strong](index.js#L454)
+### [.strong](index.js#L365)
 
 Create markdown-formatted bold text.
 
@@ -395,7 +394,7 @@ utils.strong('This is bold');
 //=> '**This is bold**'
 ```
 
-### [.todo](index.js#L474)
+### [.todo](index.js#L381)
 
 Create a markdown-formatted todo item.
 
@@ -413,53 +412,68 @@ utils.todo('this is a completed todo.', true);
 //=> '- [x] this is a todo'
 ```
 
-## Related projects
+## About
+
+<details>
+<summary><strong>Contributing</strong></summary>
+
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
+
+</details>
+
+<details>
+<summary><strong>Running Tests</strong></summary>
+
+Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
+
+```sh
+$ npm install && npm test
+```
+
+</details>
+
+<details>
+<summary><strong>Building docs</strong></summary>
+
+_(This project's readme.md is generated by [verb](https://github.com/verbose/verb-generate-readme), please don't edit the readme directly. Any changes to the readme must be made in the [.verb.md](.verb.md) readme template.)_
+
+To generate the readme, run the following command:
+
+```sh
+$ npm install -g verbose/verb#dev verb-generate-readme && verb
+```
+
+</details>
+
+### Related projects
 
 You might also be interested in these projects:
 
-* [gfm-code-blocks](https://www.npmjs.com/package/gfm-code-blocks): Extract gfm (GitHub Flavored Markdown) fenced code blocks from a string. | [homepage](https://github.com/jonschlinkert/gfm-code-blocks)
-* [markdown-link](https://www.npmjs.com/package/markdown-link): Micro util for generating a single markdown link. | [homepage](https://github.com/jonschlinkert/markdown-link)
-* [markdown-toc](https://www.npmjs.com/package/markdown-toc): Generate a markdown TOC (table of contents) with Remarkable. | [homepage](https://github.com/jonschlinkert/markdown-toc)
-* [remarkable](https://www.npmjs.com/package/remarkable): Markdown parser, done right. 100% Commonmark support, extensions, syntax plugins, high speed - all in… [more](https://www.npmjs.com/package/remarkable) | [homepage](https://github.com/jonschlinkert/remarkable)
+* [gfm-code-blocks](https://www.npmjs.com/package/gfm-code-blocks): Extract gfm (GitHub Flavored Markdown) fenced code blocks from a string. | [homepage](https://github.com/jonschlinkert/gfm-code-blocks "Extract gfm (GitHub Flavored Markdown) fenced code blocks from a string.")
+* [markdown-link](https://www.npmjs.com/package/markdown-link): Micro util for generating a single markdown link. | [homepage](https://github.com/jonschlinkert/markdown-link "Micro util for generating a single markdown link.")
+* [markdown-toc](https://www.npmjs.com/package/markdown-toc): Generate a markdown TOC (table of contents) with Remarkable. | [homepage](https://github.com/jonschlinkert/markdown-toc "Generate a markdown TOC (table of contents) with Remarkable.")
+* [remarkable](https://www.npmjs.com/package/remarkable): Markdown parser, done right. 100% Commonmark support, extensions, syntax plugins, high speed - all in… [more](https://github.com/jonschlinkert/remarkable) | [homepage](https://github.com/jonschlinkert/remarkable "Markdown parser, done right. 100% Commonmark support, extensions, syntax plugins, high speed - all in one.")
 
-## Contributing
+### Contributors
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/markdown-utils/issues/new).
+| **Commits** | **Contributor** | 
+| --- | --- |
+| 49 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 12 | [adjohnson916](https://github.com/adjohnson916) |
 
-## Building docs
-
-Generate readme and API documentation with [verb](https://github.com/verbose/verb):
-
-```sh
-$ npm install verb && npm run docs
-```
-
-Or, if [verb](https://github.com/verbose/verb) is installed globally:
-
-```sh
-$ verb
-```
-
-## Running tests
-
-Install dev dependencies:
-
-```sh
-$ npm install -d && npm test
-```
-
-## Author
+### Author
 
 **Jon Schlinkert**
 
-* [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+* [LinkedIn Profile](https://linkedin.com/in/jonschlinkert)
+* [GitHub Profile](https://github.com/jonschlinkert)
+* [Twitter Profile](https://twitter.com/jonschlinkert)
 
-## License
+### License
 
-Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT license](https://github.com/jonschlinkert/markdown-utils/blob/master/LICENSE).
+Copyright © 2018, [Jon Schlinkert](https://github.com/jonschlinkert).
+Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on April 23, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on July 05, 2018._
